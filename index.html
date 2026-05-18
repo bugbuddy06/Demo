@@ -1,507 +1,551 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Diamond Exports — Product Inquiry</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{
-  min-height:100vh;
-  background:#1a120b;
-  font-family:'Inter',sans-serif;
-  display:flex;justify-content:center;align-items:flex-start;
-  padding:40px 20px;
-  position:relative;overflow-x:hidden;
-}
-body::before{
-  content:'';position:fixed;inset:0;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%231a120b'/%3E%3Cpath d='M40 4L76 40L40 76L4 40Z' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.2'/%3E%3Cpath d='M40 16L64 40L40 64L16 40Z' fill='none' stroke='%23c8a96e' stroke-width='0.3' opacity='0.15'/%3E%3Ccircle cx='40' cy='40' r='10' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.18'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23c8a96e' opacity='0.2'/%3E%3Cpath d='M40 4L40 16M40 64L40 76M4 40L16 40M64 40L76 40' stroke='%23c8a96e' stroke-width='0.5' opacity='0.2'/%3E%3Cpath d='M0 0L12 12M80 0L68 12M0 80L12 68M80 80L68 68' stroke='%23c8a96e' stroke-width='0.3' opacity='0.12'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-}
-.page{position:relative;z-index:1;width:100%;max-width:800px;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diamond CRM Inquiry Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap');
 
-/* ── Brand bar ── */
-.brand-bar{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:28px;}
-.brand-diamond{width:32px;height:32px;}
-.brand-name{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.38em;color:#c8a96e;text-transform:uppercase;font-weight:400;}
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
 
-/* ── Card shell ── */
-.card{
-  background:#f8f2e8;
-  border:1px solid rgba(200,169,110,.35);
-  border-radius:3px;
-  overflow:hidden;
-  box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(200,169,110,.12);
-}
-.card-stripe{height:4px;background:linear-gradient(90deg,#6b4f10,#c8a96e,#eed898,#c8a96e,#6b4f10);}
+        body {
+            min-height: 100vh;
+            background: #1a120b;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-/* ── Card header ── */
-.card-head{
-  padding:40px 50px 32px;
-  background:#f0e8d4;
-  border-bottom:1px solid rgba(200,169,110,.2);
-  display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;
-}
-.head-left h1{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:#1e1008;letter-spacing:.02em;line-height:1.1;margin-bottom:6px;}
-.head-left h1 em{font-style:italic;color:#8b6210;}
-.head-left p{font-size:12px;color:#8a6e4a;letter-spacing:.07em;font-weight:400;}
-.head-badge{
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  padding:16px 20px;
-  background:rgba(200,169,110,.12);
-  border:1px solid rgba(200,169,110,.3);
-  border-radius:2px;
-}
-.head-badge svg{width:28px;height:28px;}
-.head-badge span{font-size:10px;letter-spacing:.15em;color:#8b6210;font-weight:500;text-transform:uppercase;}
+        /* SVG carpet pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%231a120b'/%3E%3Crect x='0' y='0' width='120' height='120' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.18'/%3E%3Crect x='10' y='10' width='100' height='100' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.15'/%3E%3Crect x='20' y='20' width='80' height='80' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.12'/%3E%3Cpath d='M60 10 L110 60 L60 110 L10 60 Z' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.2'/%3E%3Ccircle cx='60' cy='60' r='18' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.2'/%3E%3Ccircle cx='60' cy='60' r='8' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.18'/%3E%3Ccircle cx='60' cy='60' r='3' fill='%23c8a96e' opacity='0.25'/%3E%3Cpath d='M10 10 L30 30 M110 10 L90 30 M10 110 L30 90 M110 110 L90 90' stroke='%23c8a96e' stroke-width='0.5' opacity='0.18'/%3E%3Cpath d='M60 10 L60 20 M60 100 L60 110 M10 60 L20 60 M100 60 L110 60' stroke='%23c8a96e' stroke-width='0.7' opacity='0.22'/%3E%3Cpath d='M30 0 L30 120 M60 0 L60 120 M90 0 L90 120 M0 30 L120 30 M0 60 L120 60 M0 90 L120 90' stroke='%23c8a96e' stroke-width='0.2' opacity='0.07'/%3E%3Cpath d='M40 40 L50 30 L60 40 L70 30 L80 40' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M40 80 L50 90 L60 80 L70 90 L80 80' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M40 40 L30 50 L40 60 L30 70 L40 80' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M80 40 L90 50 L80 60 L90 70 L80 80' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            z-index: 0;
+            opacity: 1;
+        }
 
-/* ── Body ── */
-.card-body{padding:40px 50px 48px;}
+        /* Warm radial glow overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(180,110,40,0.12) 0%, transparent 70%);
+            z-index: 0;
+        }
 
-/* ── Section heads ── */
-.sec-head{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:24px;margin-top:36px;
-}
-.sec-head:first-child{margin-top:0;}
-.sec-icon{
-  width:32px;height:32px;border-radius:50%;
-  background:rgba(200,169,110,.15);
-  border:1px solid rgba(200,169,110,.35);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.sec-icon svg{width:15px;height:15px;stroke:#8b6210;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-.sec-title{font-size:10px;font-weight:600;letter-spacing:.22em;color:#6b4f10;text-transform:uppercase;}
-.sec-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(200,169,110,.4),transparent);}
+        /* Corner ornament panels */
+        .corner-panel {
+            position: fixed;
+            width: 220px;
+            height: 220px;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .corner-panel.tl { top: 0; left: 0; }
+        .corner-panel.tr { top: 0; right: 0; transform: scaleX(-1); }
+        .corner-panel.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+        .corner-panel.br { bottom: 0; right: 0; transform: scale(-1); }
 
-/* ── Grid ── */
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
-.span2{grid-column:1/-1;}
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 780px;
+        }
 
-/* ── Float-label field ── */
-.field{position:relative;display:flex;flex-direction:column;}
-.field-icon{
-  position:absolute;left:14px;top:50%;transform:translateY(-50%);
-  pointer-events:none;z-index:2;
-}
-.field-icon svg{width:15px;height:15px;stroke:#b8966a;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-.field label{
-  font-size:10px;font-weight:600;letter-spacing:.14em;
-  color:#7a5c30;text-transform:uppercase;
-  margin-bottom:7px;display:flex;align-items:center;gap:5px;
-}
-.req{color:#b07030;font-size:12px;line-height:1;}
-.field input,.field select,.field textarea{
-  background:#fff;
-  border:1.5px solid rgba(180,140,80,.3);
-  border-radius:4px;
-  font-family:'Inter',sans-serif;
-  font-size:13.5px;color:#1e1008;
-  padding:12px 14px 12px 40px;
-  outline:none;
-  transition:border-color .2s,box-shadow .2s,background .2s;
-  -webkit-appearance:none;appearance:none;
-  width:100%;
-}
-.field input::placeholder,.field textarea::placeholder{color:#c4aa80;font-weight:300;font-size:13px;}
-.field input:focus,.field select:focus,.field textarea:focus{
-  border-color:#c8a96e;
-  background:#fffdf8;
-  box-shadow:0 0 0 3px rgba(200,169,110,.14);
-}
-.field input:hover,.field select:hover,.field textarea:hover{border-color:rgba(180,140,80,.6);}
+        /* Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
 
-.field.no-icon input,.field.no-icon select,.field.no-icon textarea{padding-left:14px;}
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
 
-/* select arrow */
-.sel-wrap{position:relative;}
-.sel-wrap::after{
-  content:'';position:absolute;right:13px;top:50%;transform:translateY(-50%);
-  border:5px solid transparent;border-top-color:#8b6210;margin-top:3px;
-  pointer-events:none;
-}
-.sel-wrap select{padding-right:34px;cursor:pointer;}
+        .diamond-icon {
+            width: 36px;
+            height: 36px;
+        }
 
-/* textarea no icon */
-.field textarea{padding-left:14px;resize:vertical;min-height:108px;line-height:1.65;}
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            color: #c8a96e;
+            text-transform: uppercase;
+        }
 
-/* ── Product chips ── */
-.chips-label{font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a5c30;text-transform:uppercase;margin-bottom:10px;display:block;}
-.chips-hint{font-size:11px;color:#a88050;font-weight:300;letter-spacing:.03em;margin-bottom:12px;display:block;}
-.chips-grid{display:flex;flex-wrap:wrap;gap:8px;}
-.chip{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:8px 14px;
-  border:1.5px solid rgba(180,140,80,.35);
-  border-radius:100px;
-  background:#fff;
-  cursor:pointer;
-  user-select:none;
-  transition:all .18s ease;
-}
-.chip svg{width:13px;height:13px;stroke:#c4aa80;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:stroke .18s;}
-.chip span{font-size:12px;color:#5a3e20;font-weight:400;white-space:nowrap;}
-.chip:hover{border-color:#c8a96e;background:#fffaf0;}
-.chip.active{
-  background:#2c1a0e;border-color:#2c1a0e;
-}
-.chip.active svg{stroke:#c8a96e;}
-.chip.active span{color:#e8c97e;}
+        .form-card {
+            background: rgba(245, 238, 225, 0.97);
+            border-radius: 2px;
+            border: 1px solid rgba(200, 169, 110, 0.4);
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(200,169,110,0.15);
+        }
 
-/* hidden multi-select for form submission */
-#cat-select{position:absolute;opacity:0;pointer-events:none;height:0;width:0;}
+        /* Gold border strip */
+        .card-top-border {
+            height: 3px;
+            background: linear-gradient(90deg, #8b6914, #c8a96e, #e8c97e, #c8a96e, #8b6914);
+        }
 
-/* ── Two-col sub-grid ── */
-.sub2{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+        .card-body {
+            padding: 44px 50px 50px;
+        }
 
-/* ── Qty stepper ── */
-.stepper{display:flex;align-items:center;background:#fff;border:1.5px solid rgba(180,140,80,.3);border-radius:4px;overflow:hidden;transition:border-color .2s,box-shadow .2s;}
-.stepper:focus-within{border-color:#c8a96e;box-shadow:0 0 0 3px rgba(200,169,110,.14);}
-.stepper button{width:38px;height:46px;background:rgba(200,169,110,.1);border:none;cursor:pointer;font-size:20px;color:#8b6210;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0;font-weight:300;}
-.stepper button:hover{background:rgba(200,169,110,.22);}
-.stepper input{flex:1;border:none;outline:none;text-align:center;font-family:'Inter',sans-serif;font-size:14px;color:#1e1008;background:transparent;min-width:0;padding:0;}
+        .form-header {
+            text-align: center;
+            margin-bottom: 38px;
+            padding-bottom: 30px;
+            position: relative;
+        }
 
-/* ── Color swatches ── */
-.swatches{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
-.swatch{
-  width:34px;height:34px;border-radius:50%;cursor:pointer;
-  border:2px solid transparent;transition:transform .15s,border-color .15s;
-  position:relative;
-}
-.swatch:hover{transform:scale(1.12);}
-.swatch.active{border-color:#2c1a0e;}
-.swatch.active::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5);}
-.color-input-row{display:flex;align-items:center;gap:10px;margin-top:10px;}
-.color-input-row input{flex:1;}
-.color-tag{
-  display:inline-block;padding:4px 10px;border-radius:100px;
-  background:rgba(200,169,110,.15);border:1px solid rgba(200,169,110,.3);
-  font-size:11px;color:#6b4f10;font-weight:500;letter-spacing:.04em;
-}
+        .form-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c8a96e, transparent);
+        }
 
-/* ── Divider ornament ── */
-.div-ornament{display:flex;align-items:center;gap:12px;margin:32px 0 0;}
-.div-ornament span{font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(200,169,110,.5);}
-.div-ornament hr{flex:1;border:none;border-top:1px solid rgba(200,169,110,.2);}
+        .form-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 38px;
+            font-weight: 300;
+            color: #2c1a0e;
+            letter-spacing: 0.04em;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
 
-/* ── Submit row ── */
-.submit-row{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:14px;}
-.btn-submit{
-  position:relative;overflow:hidden;
-  padding:16px 64px;
-  background:#1e1008;
-  border:1.5px solid #c8a96e;
-  border-radius:3px;
-  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
-  letter-spacing:.28em;text-transform:uppercase;
-  color:#c8a96e;cursor:pointer;
-  transition:color .3s;
-}
-.btn-submit::before{
-  content:'';position:absolute;inset:0;
-  background:#c8a96e;transform:scaleX(0);transform-origin:left;transition:transform .35s ease;z-index:0;
-}
-.btn-submit:hover::before{transform:scaleX(1);}
-.btn-submit:hover{color:#1e1008;}
-.btn-submit span{position:relative;z-index:1;display:flex;align-items:center;gap:10px;}
-.btn-submit svg{width:15px;height:15px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-.submit-note{font-size:11px;color:#9a7a50;letter-spacing:.05em;}
-.card-foot-stripe{height:4px;background:linear-gradient(90deg,#6b4f10,#c8a96e,#eed898,#c8a96e,#6b4f10);}
+        .form-header h1 span {
+            color: #8b6914;
+        }
 
-/* ── Footer ── */
-.page-foot{text-align:center;margin-top:20px;font-size:11px;color:rgba(200,169,110,.35);letter-spacing:.14em;}
+        .form-header p {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #7a6040;
+            letter-spacing: 0.08em;
+            font-weight: 400;
+        }
 
-@media(max-width:640px){
-  .card-head{padding:28px 24px;grid-template-columns:1fr;}
-  .card-body{padding:28px 24px 36px;}
-  .fg,.sub2{grid-template-columns:1fr;}
-  .head-badge{display:none;}
-}
-</style>
+        /* Ornamental divider */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 36px;
+        }
+
+        .ornament-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(200,169,110,0.5));
+        }
+        .ornament-line.right {
+            background: linear-gradient(90deg, rgba(200,169,110,0.5), transparent);
+        }
+
+        /* Section labels */
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: #8b6914;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(200,169,110,0.25);
+            grid-column: 1 / -1;
+        }
+
+        /* Form grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 24px;
+            margin-bottom: 8px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: #5a3e28;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        label .required-dot {
+            color: #8b6914;
+            margin-left: 3px;
+        }
+
+        input, select, textarea {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #2c1a0e;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(180,140,80,0.35);
+            border-radius: 2px;
+            padding: 11px 14px;
+            outline: none;
+            transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input::placeholder {
+            color: #b8a080;
+            font-weight: 300;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #c8a96e;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(200,169,110,0.12);
+        }
+
+        input:hover, select:hover, textarea:hover {
+            border-color: rgba(180,140,80,0.6);
+        }
+
+        /* Custom select arrow */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #8b6914;
+            pointer-events: none;
+        }
+
+        /* Multi-select special styling */
+        select[multiple] {
+            height: auto;
+            min-height: 130px;
+            padding: 8px;
+        }
+
+        select[multiple] option {
+            padding: 7px 10px;
+            border-radius: 2px;
+            margin-bottom: 2px;
+            font-size: 13px;
+            color: #2c1a0e;
+        }
+
+        select[multiple] option:checked {
+            background: linear-gradient(#c8a96e, #c8a96e);
+            color: #fff;
+        }
+
+        select[multiple] option:hover {
+            background: rgba(200,169,110,0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+            line-height: 1.6;
+        }
+
+        /* Submit section */
+        .submit-section {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            max-width: 340px;
+            background: #2c1a0e;
+            color: #c8a96e;
+            border: 1px solid #c8a96e;
+            padding: 16px 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #c8a96e;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+            z-index: 0;
+        }
+
+        .submit-btn:hover::before {
+            transform: scaleX(1);
+        }
+
+        .submit-btn:hover {
+            color: #2c1a0e;
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .submit-note {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: #a08060;
+            letter-spacing: 0.05em;
+        }
+
+        /* Bottom card border */
+        .card-bottom-border {
+            height: 3px;
+            background: linear-gradient(90deg, #8b6914, #c8a96e, #e8c97e, #c8a96e, #8b6914);
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: rgba(200,169,110,0.45);
+            letter-spacing: 0.12em;
+        }
+
+        /* Section spacing */
+        .section-gap {
+            margin-top: 8px;
+        }
+
+        @media (max-width: 640px) {
+            .card-body { padding: 30px 24px 36px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-header h1 { font-size: 28px; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="page">
+<!-- Corner ornamental SVGs -->
+<svg class="corner-panel tl" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 L220 0 L220 10 L10 10 L10 220 L0 220 Z" fill="#c8a96e"/>
+    <path d="M20 20 L160 20 L160 30 L30 30 L30 160 L20 160 Z" fill="#c8a96e" opacity="0.5"/>
+    <path d="M0 0 L80 0 L80 10 M0 0 L0 80 L10 80" stroke="#c8a96e" stroke-width="0.5" opacity="0.8"/>
+    <path d="M40 0 L40 40 L0 40" stroke="#c8a96e" stroke-width="0.5" fill="none" opacity="0.6"/>
+    <path d="M60 0 L60 60 L0 60" stroke="#c8a96e" stroke-width="0.3" fill="none" opacity="0.4"/>
+    <rect x="14" y="14" width="16" height="16" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7"/>
+    <circle cx="22" cy="22" r="4" fill="#c8a96e" opacity="0.6"/>
+    <path d="M50 10 L50 50 L10 50" stroke="#c8a96e" stroke-width="0.4" fill="none" opacity="0.5"/>
+    <path d="M22 0 L22 14 M0 22 L14 22" stroke="#c8a96e" stroke-width="0.6" opacity="0.5"/>
+</svg>
+<svg class="corner-panel tr" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 L220 0 L220 220 L210 220 L210 10 L0 10 Z" fill="#c8a96e"/>
+    <path d="M60 20 L200 20 L200 160 L190 160 L190 30 L60 30 Z" fill="#c8a96e" opacity="0.5"/>
+    <path d="M40 0 L40 40 L0 40" stroke="#c8a96e" stroke-width="0.5" fill="none" opacity="0.6"/>
+    <rect x="190" y="14" width="16" height="16" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7"/>
+    <circle cx="198" cy="22" r="4" fill="#c8a96e" opacity="0.6"/>
+</svg>
+<svg class="corner-panel bl" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 L10 0 L10 210 L220 210 L220 220 L0 220 Z" fill="#c8a96e"/>
+    <path d="M20 60 L30 60 L30 190 L160 190 L160 200 L20 200 Z" fill="#c8a96e" opacity="0.5"/>
+    <rect x="14" y="190" width="16" height="16" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7"/>
+    <circle cx="22" cy="198" r="4" fill="#c8a96e" opacity="0.6"/>
+</svg>
+<svg class="corner-panel br" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M210 0 L220 0 L220 220 L0 220 L0 210 L210 210 Z" fill="#c8a96e"/>
+    <path d="M190 60 L200 60 L200 200 L60 200 L60 190 L190 190 Z" fill="#c8a96e" opacity="0.5"/>
+    <rect x="190" y="190" width="16" height="16" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7"/>
+    <circle cx="198" cy="198" r="4" fill="#c8a96e" opacity="0.6"/>
+</svg>
 
-  <div class="brand-bar">
-    <svg class="brand-diamond" viewBox="0 0 32 32" fill="none">
-      <path d="M16 2L30 16L16 30L2 16Z" stroke="#c8a96e" stroke-width="1.2"/>
-      <path d="M16 8L24 16L16 24L8 16Z" stroke="#c8a96e" stroke-width=".7" opacity=".55"/>
-      <circle cx="16" cy="16" r="3" fill="#c8a96e" opacity=".75"/>
-      <path d="M16 2v6M16 24v6M2 16h6M24 16h6" stroke="#c8a96e" stroke-width=".8" opacity=".45"/>
-    </svg>
-    <span class="brand-name">Diamond Exports</span>
-  </div>
+<div class="page-wrapper">
 
-  <div class="card">
-    <div class="card-stripe"></div>
-
-    <!-- Header -->
-    <div class="card-head">
-      <div class="head-left">
-        <h1>Product <em>Inquiry</em></h1>
-        <p>Our team will respond within 24–48 business hours</p>
-      </div>
-      <div class="head-badge">
-        <svg viewBox="0 0 28 28" fill="none">
-          <path d="M14 2L26 14L14 26L2 14Z" stroke="#c8a96e" stroke-width="1.2"/>
-          <path d="M14 8L20 14L14 20L8 14Z" stroke="#c8a96e" stroke-width=".8" opacity=".6"/>
-          <circle cx="14" cy="14" r="2.5" fill="#c8a96e" opacity=".8"/>
-        </svg>
-        <span>Est. 1995</span>
-      </div>
+    <!-- Brand header -->
+    <div class="brand-header">
+        <div class="brand-logo">
+            <svg class="diamond-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2L34 18L18 34L2 18Z" fill="none" stroke="#c8a96e" stroke-width="1.2"/>
+                <path d="M18 8L28 18L18 28L8 18Z" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.6"/>
+                <circle cx="18" cy="18" r="3" fill="#c8a96e" opacity="0.8"/>
+                <path d="M18 2L18 8 M18 28L18 34 M2 18L8 18 M28 18L34 18" stroke="#c8a96e" stroke-width="0.8" opacity="0.5"/>
+            </svg>
+            <span class="brand-name">Diamond Exports</span>
+        </div>
     </div>
 
-    <div class="card-body">
-      <form id="inquiry-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
-        <input type="hidden" name="oid" value="00DIm000000LPS5">
-        <input type="hidden" name="retURL" value="https://bugbuddy06.github.io/Demo/thankyou">
-        <input type="hidden" name="debug" value="0">
+    <!-- Main form card -->
+    <div class="form-card">
+        <div class="card-top-border"></div>
 
-        <!-- Section 1 -->
-        <div class="sec-head">
-          <div class="sec-icon">
-            <svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
-          </div>
-          <span class="sec-title">Contact Information</span>
-          <div class="sec-line"></div>
+        <div class="card-body">
+            <div class="form-header">
+                <h1>Product <span>Inquiry</span></h1>
+                <p>Fill in the details and our team will be in touch shortly</p>
+            </div>
+
+            <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DIm000000LPS5" method="POST">
+                <input type="hidden" name="oid" value="00DIm000000LPS5">
+                <input type="hidden" name="retURL" value="https://google.com">
+
+                <!-- Contact Info -->
+                <div class="form-grid">
+                    <div class="section-label">Contact Information</div>
+
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input id="first_name" maxlength="40" name="first_name" type="text" placeholder="Enter first name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name">Last Name <span class="required-dot">*</span></label>
+                        <input id="last_name" maxlength="80" name="last_name" type="text" required placeholder="Enter last name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input id="email" maxlength="80" name="email" type="email" placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" maxlength="40" name="phone" type="text" placeholder="+1 (000) 000-0000">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="company">Company / Organisation <span class="required-dot">*</span></label>
+                        <input id="company" maxlength="40" name="company" type="text" required placeholder="Your company name">
+                    </div>
+                </div>
+
+                <!-- Product Preferences -->
+                <div class="form-grid section-gap">
+                    <div class="section-label">Product Preferences</div>
+
+                    <div class="form-group full-width">
+                        <label for="00NIm000002RHuS">Interested Product Category <small style="font-weight:300;letter-spacing:0;text-transform:none;color:#a08060;font-size:10px;">&nbsp;(hold Ctrl / ⌘ to select multiple)</small></label>
+                        <select id="00NIm000002RHuS" multiple="multiple" name="00NIm000002RHuS">
+                            <option value="Hand Knotted Rugs">Hand Knotted Rugs</option>
+                            <option value="Modern Rugs">Modern Rugs</option>
+                            <option value="Designer Rugs">Designer Rugs</option>
+                            <option value="Flat Weave Rugs">Flat Weave Rugs</option>
+                            <option value="Wool Rugs">Wool Rugs</option>
+                            <option value="Cotton Rugs">Cotton Rugs</option>
+                            <option value="Carpets">Carpets</option>
+                            <option value="Cushion Covers">Cushion Covers</option>
+                            <option value="Poufs">Poufs</option>
+                            <option value="Home Furnishing">Home Furnishing</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="00NIm000002RHuc">Preferred Material</label>
+                        <div class="select-wrapper">
+                            <select id="00NIm000002RHuc" name="00NIm000002RHuc">
+                                <option value="">— Select material —</option>
+                                <option value="Wool">Wool</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Jute">Jute</option>
+                                <option value="Silk">Silk</option>
+                                <option value="Polyester">Polyester</option>
+                                <option value="Viscose">Viscose</option>
+                                <option value="Bamboo Silk">Bamboo Silk</option>
+                                <option value="Leather">Leather</option>
+                                <option value="Blended Fabric">Blended Fabric</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="00NIm000002RHum">Quantity Required</label>
+                        <input id="00NIm000002RHum" name="00NIm000002RHum" type="number" min="1" placeholder="e.g. 50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="00NIm000002RHuw">Preferred Size</label>
+                        <input id="00NIm000002RHuw" maxlength="255" name="00NIm000002RHuw" type="text" placeholder='e.g. 8x10 ft'>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="00NIm000002RHv1">Preferred Colour Theme</label>
+                        <input id="00NIm000002RHv1" maxlength="255" name="00NIm000002RHv1" type="text" placeholder="e.g. Earthy neutrals">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="00NIm000002RHuh">Requirement Details</label>
+                        <textarea id="00NIm000002RHuh" name="00NIm000002RHuh" rows="5" placeholder="Describe your requirements — design preferences, delivery timelines, special instructions..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="submit-section">
+                    <button class="submit-btn" type="submit">
+                        <span>Submit Inquiry</span>
+                    </button>
+                    <p class="submit-note">Our team typically responds within 24–48 business hours</p>
+                </div>
+
+            </form>
         </div>
 
-        <div class="fg">
-          <div class="field">
-            <label for="first_name">First Name</label>
-            <div class="field-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
-            <input id="first_name" name="first_name" type="text" maxlength="40" placeholder="First name">
-          </div>
-          <div class="field">
-            <label for="last_name">Last Name <span class="req">*</span></label>
-            <div class="field-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
-            <input id="last_name" name="last_name" type="text" maxlength="80" required placeholder="Last name">
-          </div>
-          <div class="field">
-            <label for="email">Email Address</label>
-            <div class="field-icon"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M2 5l6 5 6-5"/></svg></div>
-            <input id="email" name="email" type="email" maxlength="80" placeholder="you@company.com">
-          </div>
-          <div class="field">
-            <label for="phone">Phone Number</label>
-            <div class="field-icon"><svg viewBox="0 0 16 16"><path d="M3 2h3l1.5 3.5-1.7 1a9 9 0 004.7 4.7l1-1.7L15 11v3a1 1 0 01-1 1C6.3 15 1 9.7 1 3a1 1 0 011-1z"/></svg></div>
-            <input id="phone" name="phone" type="text" maxlength="40" placeholder="+1 (000) 000-0000">
-          </div>
-          <div class="field span2">
-            <label for="company">Company / Organisation <span class="req">*</span></label>
-            <div class="field-icon"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="11" rx="1"/><path d="M6 15V9h4v6M5 4V2h6v2"/></svg></div>
-            <input id="company" name="company" type="text" maxlength="40" required placeholder="Your company name">
-          </div>
-        </div>
-
-        <div class="div-ornament"><hr><span>✦</span><hr></div>
-
-        <!-- Section 2 -->
-        <div class="sec-head" style="margin-top:28px;">
-          <div class="sec-icon">
-            <svg viewBox="0 0 16 16"><rect x="1" y="5" width="14" height="10" rx="1"/><path d="M5 5V3a3 3 0 016 0v2"/></svg>
-          </div>
-          <span class="sec-title">Product Preferences</span>
-          <div class="sec-line"></div>
-        </div>
-
-        <!-- Category chips -->
-        <div class="span2" style="margin-bottom:22px;">
-          <span class="chips-label">Interested Product Category</span>
-          <span class="chips-hint">Select one or more categories</span>
-          <div class="chips-grid" id="chips-grid">
-            <div class="chip" data-val="Hand Knotted Rugs">
-              <svg viewBox="0 0 13 13"><path d="M1 12L12 1M1 7L7 1M7 12L12 7"/></svg>
-              <span>Hand Knotted Rugs</span>
-            </div>
-            <div class="chip" data-val="Modern Rugs">
-              <svg viewBox="0 0 13 13"><rect x="1" y="1" width="11" height="11" rx="1"/><path d="M1 5h11M1 9h11M5 1v11"/></svg>
-              <span>Modern Rugs</span>
-            </div>
-            <div class="chip" data-val="Designer Rugs">
-              <svg viewBox="0 0 13 13"><path d="M6.5 1l1.5 3h3l-2.5 2 1 3-3-2-3 2 1-3L2 4h3z"/></svg>
-              <span>Designer Rugs</span>
-            </div>
-            <div class="chip" data-val="Flat Weave Rugs">
-              <svg viewBox="0 0 13 13"><path d="M1 4h11M1 7h11M1 10h11"/></svg>
-              <span>Flat Weave Rugs</span>
-            </div>
-            <div class="chip" data-val="Wool Rugs">
-              <svg viewBox="0 0 13 13"><path d="M2 9c1-3 2-5 4.5-5S11 6 11 9"/><path d="M4 9c.5-2 1-3 2.5-3S10 7 10 9"/></svg>
-              <span>Wool Rugs</span>
-            </div>
-            <div class="chip" data-val="Cotton Rugs">
-              <svg viewBox="0 0 13 13"><circle cx="6.5" cy="8" r="3"/><path d="M6.5 5V2M4 3l2.5 2M9 3L6.5 5"/></svg>
-              <span>Cotton Rugs</span>
-            </div>
-            <div class="chip" data-val="Carpets">
-              <svg viewBox="0 0 13 13"><rect x="1" y="2" width="11" height="9" rx="1"/><path d="M4 2v9M9 2v9M1 5.5h11"/></svg>
-              <span>Carpets</span>
-            </div>
-            <div class="chip" data-val="Cushion Covers">
-              <svg viewBox="0 0 13 13"><rect x="1" y="3" width="11" height="7" rx="2"/><path d="M4 3v7M9 3v7"/></svg>
-              <span>Cushion Covers</span>
-            </div>
-            <div class="chip" data-val="Poufs">
-              <svg viewBox="0 0 13 13"><ellipse cx="6.5" cy="8" rx="5" ry="3"/><path d="M1.5 8c0-2.5 2.2-5 5-5s5 2.5 5 5"/></svg>
-              <span>Poufs</span>
-            </div>
-            <div class="chip" data-val="Home Furnishing">
-              <svg viewBox="0 0 13 13"><path d="M1 10V6l5.5-4L12 6v4"/><rect x="4" y="7" width="5" height="3"/></svg>
-              <span>Home Furnishing</span>
-            </div>
-          </div>
-          <select id="cat-select" id="00NIm000002RHuS" multiple name="00NIm000002RHuS">
-            <option value="Hand Knotted Rugs">Hand Knotted Rugs</option>
-            <option value="Modern Rugs">Modern Rugs</option>
-            <option value="Designer Rugs">Designer Rugs</option>
-            <option value="Flat Weave Rugs">Flat Weave Rugs</option>
-            <option value="Wool Rugs">Wool Rugs</option>
-            <option value="Cotton Rugs">Cotton Rugs</option>
-            <option value="Carpets">Carpets</option>
-            <option value="Cushion Covers">Cushion Covers</option>
-            <option value="Poufs">Poufs</option>
-            <option value="Home Furnishing">Home Furnishing</option>
-          </select>
-        </div>
-
-        <!-- Material + Size row -->
-        <div class="sub2">
-          <div class="field no-icon">
-            <label for="00NIm000002RHuc">Preferred Material</label>
-            <div class="sel-wrap">
-              <select id="00NIm000002RHuc" name="00NIm000002RHuc">
-                <option value="">— Select material —</option>
-                <option value="Wool">Wool</option>
-                <option value="Cotton">Cotton</option>
-                <option value="Jute">Jute</option>
-                <option value="Silk">Silk</option>
-                <option value="Polyester">Polyester</option>
-                <option value="Viscose">Viscose</option>
-                <option value="Bamboo Silk">Bamboo Silk</option>
-                <option value="Leather">Leather</option>
-                <option value="Blended Fabric">Blended Fabric</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="00NIm000002RHuw">Preferred Size</label>
-            <div class="field-icon">
-              <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M2 6h3M2 10h3M6 2v3M10 2v3"/></svg>
-            </div>
-            <input id="00NIm000002RHuw" name="00NIm000002RHuw" type="text" maxlength="255" placeholder='e.g. 8×10 ft or 240×300 cm'>
-          </div>
-        </div>
-
-        <!-- Quantity stepper -->
-        <div style="margin-top:18px;">
-          <label style="font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a5c30;text-transform:uppercase;display:block;margin-bottom:8px;">
-            Quantity Required
-          </label>
-          <div class="stepper" style="max-width:180px;">
-            <button type="button" id="qty-minus">−</button>
-            <input id="00NIm000002RHum" name="00NIm000002RHum" type="number" min="1" value="1" placeholder="1">
-            <button type="button" id="qty-plus">+</button>
-          </div>
-        </div>
-
-        <!-- Colour theme with swatches -->
-        <div style="margin-top:22px;">
-          <label style="font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a5c30;text-transform:uppercase;display:block;margin-bottom:10px;">
-            Preferred Colour Theme
-          </label>
-          <div class="swatches" id="swatches">
-            <div class="swatch" data-color="Earthy Neutrals" style="background:#c9a97a;" title="Earthy Neutrals"></div>
-            <div class="swatch" data-color="Ivory & Cream" style="background:#f0e8d0;" title="Ivory & Cream"></div>
-            <div class="swatch" data-color="Deep Burgundy" style="background:#6b1a2a;" title="Deep Burgundy"></div>
-            <div class="swatch" data-color="Midnight Navy" style="background:#1a2550;" title="Midnight Navy"></div>
-            <div class="swatch" data-color="Forest Green" style="background:#2d5a3d;" title="Forest Green"></div>
-            <div class="swatch" data-color="Terracotta" style="background:#c4622d;" title="Terracotta"></div>
-            <div class="swatch" data-color="Charcoal Grey" style="background:#484848;" title="Charcoal Grey"></div>
-            <div class="swatch" data-color="Blush Pink" style="background:#e8b4a0;" title="Blush Pink"></div>
-          </div>
-          <div class="color-input-row">
-            <div class="field" style="flex:1;margin:0;">
-              <div class="field-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><path d="M8 3v2M8 11v2M3 8h2M11 8h2"/></svg></div>
-              <input id="00NIm000002RHv1" name="00NIm000002RHv1" type="text" maxlength="255" placeholder="Or describe your colour preference…" style="padding-left:40px;">
-            </div>
-          </div>
-        </div>
-
-        <div class="div-ornament" style="margin-top:28px;"><hr><span>✦</span><hr></div>
-
-        <!-- Requirements -->
-        <div class="sec-head" style="margin-top:28px;">
-          <div class="sec-icon">
-            <svg viewBox="0 0 16 16"><path d="M3 4h10M3 8h7M3 12h5"/></svg>
-          </div>
-          <span class="sec-title">Requirement Details</span>
-          <div class="sec-line"></div>
-        </div>
-
-        <div class="field no-icon">
-          <label for="00NIm000002RHuh">Describe your requirements</label>
-          <textarea id="00NIm000002RHuh" name="00NIm000002RHuh" rows="5" placeholder="Share design preferences, delivery timelines, custom patterns, certifications needed, or any other specifications…"></textarea>
-        </div>
-
-        <!-- Submit -->
-        <div class="submit-row">
-          <button class="btn-submit" type="submit">
-            <span>
-              <svg viewBox="0 0 16 16"><path d="M14 8H2M9 3l5 5-5 5"/></svg>
-              Submit Inquiry
-            </span>
-          </button>
-          <p class="submit-note">Trusted by buyers across 40+ countries &nbsp;·&nbsp; Responses within 24–48 hours</p>
-        </div>
-
-      </form>
+        <div class="card-bottom-border"></div>
     </div>
-    <div class="card-foot-stripe"></div>
-  </div>
 
-  <div class="page-foot">© 2025 Diamond Exports &nbsp;·&nbsp; Handcrafted Rugs &amp; Carpets since 1995</div>
+    <div class="page-footer">© 2025 Diamond Exports &nbsp;·&nbsp; Handcrafted Rugs &amp; Carpets</div>
 </div>
 
-<script>
-(function(){
-  /* Chip toggle */
-  const chipsGrid = document.getElementById('chips-grid');
-  const catSelect = document.getElementById('cat-select');
-  chipsGrid.querySelectorAll('.chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      chip.classList.toggle('active');
-      const val = chip.dataset.val;
-      const opt = [...catSelect.options].find(o => o.value === val);
-      if(opt) opt.selected = chip.classList.contains('active');
-    });
-  });
-
-  /* Qty stepper */
-  const qtyInput = document.getElementById('00NIm000002RHum');
-  document.getElementById('qty-minus').addEventListener('click', () => {
-    const v = parseInt(qtyInput.value)||1;
-    if(v > 1) qtyInput.value = v - 1;
-  });
-  document.getElementById('qty-plus').addEventListener('click', () => {
-    const v = parseInt(qtyInput.value)||1;
-    qtyInput.value = v + 1;
-  });
-
-  /* Colour swatches */
-  const colorInput = document.getElementById('00NIm000002RHv1');
-  document.getElementById('swatches').querySelectorAll('.swatch').forEach(sw => {
-    sw.addEventListener('click', () => {
-      document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-      sw.classList.add('active');
-      colorInput.value = sw.dataset.color;
-    });
-  });
-})();
-</script>
 </body>
 </html>
