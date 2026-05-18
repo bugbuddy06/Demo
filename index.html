@@ -3,481 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Diamond CRM Inquiry Form</title>
+    <title>Diamond Exports — Product Inquiry</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
-        *, *::before, *::after {
-            margin: 0; padding: 0; box-sizing: border-box;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #c8a96e;
+            --gold-light: #e8c97e;
+            --gold-dark: #8b6914;
+            --gold-deep: #6b4f10;
+            --brown-dark: #2c1a0e;
+            --brown-mid: #1e1008;
+            --cream: #f5eedf;
+            --cream-light: #faf6ed;
+            --text-dark: #2c1a0e;
+            --text-mid: #5a3e28;
+            --text-light: #8a6e4a;
         }
 
         body {
             min-height: 100vh;
             background: #1a120b;
+            font-family: 'Inter', sans-serif;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 40px 20px;
+            padding: 48px 20px 60px;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* SVG carpet pattern background */
+        /* Carpet-weave background */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%231a120b'/%3E%3Crect x='0' y='0' width='120' height='120' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.18'/%3E%3Crect x='10' y='10' width='100' height='100' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.15'/%3E%3Crect x='20' y='20' width='80' height='80' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.12'/%3E%3Cpath d='M60 10 L110 60 L60 110 L10 60 Z' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.2'/%3E%3Ccircle cx='60' cy='60' r='18' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.2'/%3E%3Ccircle cx='60' cy='60' r='8' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.18'/%3E%3Ccircle cx='60' cy='60' r='3' fill='%23c8a96e' opacity='0.25'/%3E%3Cpath d='M10 10 L30 30 M110 10 L90 30 M10 110 L30 90 M110 110 L90 90' stroke='%23c8a96e' stroke-width='0.5' opacity='0.18'/%3E%3Cpath d='M60 10 L60 20 M60 100 L60 110 M10 60 L20 60 M100 60 L110 60' stroke='%23c8a96e' stroke-width='0.7' opacity='0.22'/%3E%3Cpath d='M30 0 L30 120 M60 0 L60 120 M90 0 L90 120 M0 30 L120 30 M0 60 L120 60 M0 90 L120 90' stroke='%23c8a96e' stroke-width='0.2' opacity='0.07'/%3E%3Cpath d='M40 40 L50 30 L60 40 L70 30 L80 40' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M40 80 L50 90 L60 80 L70 90 L80 80' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M40 40 L30 50 L40 60 L30 70 L40 80' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M80 40 L90 50 L80 60 L90 70 L80 80' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%231a120b'/%3E%3Crect x='0' y='0' width='120' height='120' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.18'/%3E%3Crect x='10' y='10' width='100' height='100' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.15'/%3E%3Crect x='20' y='20' width='80' height='80' fill='none' stroke='%23c8a96e' stroke-width='0.4' opacity='0.12'/%3E%3Cpath d='M60 10 L110 60 L60 110 L10 60 Z' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.2'/%3E%3Ccircle cx='60' cy='60' r='18' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.2'/%3E%3Ccircle cx='60' cy='60' r='8' fill='none' stroke='%23c8a96e' stroke-width='0.5' opacity='0.18'/%3E%3Ccircle cx='60' cy='60' r='3' fill='%23c8a96e' opacity='0.25'/%3E%3Cpath d='M10 10 L30 30 M110 10 L90 30 M10 110 L30 90 M110 110 L90 90' stroke='%23c8a96e' stroke-width='0.5' opacity='0.18'/%3E%3Cpath d='M60 10 L60 20 M60 100 L60 110 M10 60 L20 60 M100 60 L110 60' stroke='%23c8a96e' stroke-width='0.7' opacity='0.22'/%3E%3Cpath d='M30 0 L30 120 M60 0 L60 120 M90 0 L90 120 M0 30 L120 30 M0 60 L120 60 M0 90 L120 90' stroke='%23c8a96e' stroke-width='0.2' opacity='0.07'/%3E%3C/svg%3E");
             background-repeat: repeat;
             z-index: 0;
-            opacity: 1;
         }
 
-        /* Warm radial glow overlay */
+        /* Warm glow */
         body::after {
             content: '';
             position: fixed;
             inset: 0;
-            background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(180,110,40,0.12) 0%, transparent 70%);
+            background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(180,110,40,0.14) 0%, transparent 70%);
             z-index: 0;
         }
 
-        /* Corner ornament panels */
-        .corner-panel {
-            position: fixed;
-            width: 220px;
-            height: 220px;
-            opacity: 0.3;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .corner-panel.tl { top: 0; left: 0; }
-        .corner-panel.tr { top: 0; right: 0; transform: scaleX(-1); }
-        .corner-panel.bl { bottom: 0; left: 0; transform: scaleY(-1); }
-        .corner-panel.br { bottom: 0; right: 0; transform: scale(-1); }
+        /* Corner ornaments */
+        .corner { position: fixed; width: 200px; height: 200px; opacity: 0.25; z-index: 0; pointer-events: none; }
+        .corner.tl { top: 0; left: 0; }
+        .corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+        .corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+        .corner.br { bottom: 0; right: 0; transform: scale(-1); }
 
-        .page-wrapper {
+        .page {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 780px;
+            max-width: 760px;
         }
 
-        /* Header */
-        .brand-header {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .brand-logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .diamond-icon {
-            width: 36px;
-            height: 36px;
-        }
-
-        .brand-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.35em;
-            color: #c8a96e;
-            text-transform: uppercase;
-        }
-
-        .form-card {
-            background: rgba(245, 238, 225, 0.97);
-            border-radius: 2px;
-            border: 1px solid rgba(200, 169, 110, 0.4);
-            overflow: hidden;
-            box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(200,169,110,0.15);
-        }
-
-        /* Gold border strip */
-        .card-top-border {
-            height: 3px;
-            background: linear-gradient(90deg, #8b6914, #c8a96e, #e8c97e, #c8a96e, #8b6914);
-        }
-
-        .card-body {
-            padding: 44px 50px 50px;
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 38px;
-            padding-bottom: 30px;
-            position: relative;
-        }
-
-        .form-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 160px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #c8a96e, transparent);
-        }
-
-        .form-header h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 38px;
-            font-weight: 300;
-            color: #2c1a0e;
-            letter-spacing: 0.04em;
-            margin-bottom: 10px;
-            line-height: 1.1;
-        }
-
-        .form-header h1 span {
-            color: #8b6914;
-        }
-
-        .form-header p {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            color: #7a6040;
-            letter-spacing: 0.08em;
-            font-weight: 400;
-        }
-
-        /* Ornamental divider */
-        .ornament {
+        /* ── Brand bar ── */
+        .brand {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 36px;
+            gap: 14px;
+            margin-bottom: 22px;
         }
-
-        .ornament-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(200,169,110,0.5));
-        }
-        .ornament-line.right {
-            background: linear-gradient(90deg, rgba(200,169,110,0.5), transparent);
-        }
-
-        /* Section labels */
-        .section-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            color: #8b6914;
+        .brand svg { width: 34px; height: 34px; }
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: .38em;
+            color: var(--gold);
             text-transform: uppercase;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(200,169,110,0.25);
-            grid-column: 1 / -1;
         }
 
-        /* Form grid */
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px 24px;
-            margin-bottom: 8px;
+        /* ── Card ── */
+        .card {
+            background: var(--cream);
+            border: 1px solid rgba(200,169,110,.35);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(200,169,110,.12);
         }
 
-        .full-width {
-            grid-column: 1 / -1;
+        .stripe { height: 3px; background: linear-gradient(90deg, #6b4f10, #c8a96e, #eed898, #c8a96e, #6b4f10); }
+
+        /* ── Card header ── */
+        .card-head {
+            background: #ede4ce;
+            padding: 36px 50px 30px;
+            border-bottom: 1px solid rgba(200,169,110,.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
         }
 
-        .form-group {
+        .head-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--brown-dark); letter-spacing: .02em; line-height: 1.1; margin-bottom: 6px; }
+        .head-title em { font-style: italic; color: var(--gold-dark); }
+        .head-sub { font-size: 11.5px; color: var(--text-light); letter-spacing: .07em; }
+
+        .head-badge {
             display: flex;
             flex-direction: column;
-            gap: 7px;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border: 1px solid rgba(200,169,110,.3);
+            background: rgba(200,169,110,.08);
+            border-radius: 2px;
+            flex-shrink: 0;
         }
+        .head-badge svg { width: 28px; height: 28px; }
+        .head-badge span { font-size: 9.5px; letter-spacing: .16em; color: var(--gold-dark); font-weight: 600; text-transform: uppercase; }
 
-        label {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            font-weight: 500;
-            color: #5a3e28;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
+        /* ── Body ── */
+        .card-body { padding: 42px 50px 52px; }
 
-        label .required-dot {
-            color: #8b6914;
-            margin-left: 3px;
+        /* ── Section header ── */
+        .sec {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px;
+            margin-top: 36px;
         }
+        .sec:first-child { margin-top: 0; }
+
+        .sec-dot {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgba(200,169,110,.4);
+            background: rgba(200,169,110,.12);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .sec-dot svg { width: 14px; height: 14px; stroke: var(--gold-dark); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .sec-title { font-size: 9.5px; font-weight: 600; letter-spacing: .22em; color: var(--gold-deep); text-transform: uppercase; white-space: nowrap; }
+        .sec-rule { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(200,169,110,.4), transparent); }
+
+        /* ── Grid ── */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
+        .span2 { grid-column: 1 / -1; }
+
+        /* ── Field ── */
+        .field { display: flex; flex-direction: column; gap: 7px; }
+        .field label {
+            font-size: 10px; font-weight: 600; letter-spacing: .14em;
+            color: var(--text-mid); text-transform: uppercase;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .req { color: var(--gold-dark); font-size: 13px; line-height: 1; }
+
+        /* Input wrapper with icon */
+        .inp-wrap { position: relative; }
+        .inp-icon {
+            position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+            pointer-events: none; z-index: 2;
+            display: flex; align-items: center;
+        }
+        .inp-icon svg { width: 14px; height: 14px; stroke: #b8966a; stroke-width: 1.7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
         input, select, textarea {
             font-family: 'Inter', sans-serif;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 400;
-            color: #2c1a0e;
-            background: rgba(255,255,255,0.7);
-            border: 1px solid rgba(180,140,80,0.35);
-            border-radius: 2px;
-            padding: 11px 14px;
+            color: var(--text-dark);
+            background: rgba(255,255,255,.75);
+            border: 1.5px solid rgba(180,140,80,.28);
+            border-radius: 3px;
+            padding: 11px 13px 11px 38px;
             outline: none;
-            transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+            width: 100%;
+            transition: border-color .2s, background .2s, box-shadow .2s;
             -webkit-appearance: none;
             appearance: none;
         }
 
-        input::placeholder {
-            color: #b8a080;
-            font-weight: 300;
-        }
+        input::placeholder, textarea::placeholder { color: #c0a87a; font-weight: 300; font-size: 12.5px; }
 
         input:focus, select:focus, textarea:focus {
-            border-color: #c8a96e;
+            border-color: var(--gold);
             background: #fff;
-            box-shadow: 0 0 0 3px rgba(200,169,110,0.12);
+            box-shadow: 0 0 0 3px rgba(200,169,110,.13);
         }
 
-        input:hover, select:hover, textarea:hover {
-            border-color: rgba(180,140,80,0.6);
-        }
+        input:hover, select:hover, textarea:hover { border-color: rgba(180,140,80,.55); }
 
-        /* Custom select arrow */
-        .select-wrapper {
-            position: relative;
-        }
+        /* No-icon inputs */
+        .no-icon input, .no-icon select, .no-icon textarea { padding-left: 13px; }
 
-        .select-wrapper::after {
+        /* Select arrow */
+        .sel-wrap { position: relative; }
+        .sel-wrap::after {
             content: '';
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid #8b6914;
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            border: 5px solid transparent; border-top-color: var(--gold-dark); margin-top: 3px;
             pointer-events: none;
         }
+        .sel-wrap select { padding-left: 13px; padding-right: 32px; cursor: pointer; }
 
-        /* Multi-select special styling */
+        /* Textarea */
+        .field textarea { padding-left: 13px; resize: vertical; min-height: 110px; line-height: 1.65; }
+
+        /* Multi-select */
         select[multiple] {
+            padding: 6px 8px;
+            min-height: 134px;
             height: auto;
-            min-height: 130px;
-            padding: 8px;
+            padding-left: 8px;
         }
-
         select[multiple] option {
             padding: 7px 10px;
             border-radius: 2px;
             margin-bottom: 2px;
             font-size: 13px;
-            color: #2c1a0e;
         }
-
         select[multiple] option:checked {
-            background: linear-gradient(#c8a96e, #c8a96e);
+            background: linear-gradient(var(--gold), var(--gold));
             color: #fff;
         }
 
-        select[multiple] option:hover {
-            background: rgba(200,169,110,0.15);
+        /* ── Divider ornament ── */
+        .divider {
+            display: flex; align-items: center; gap: 12px;
+            margin: 30px 0 0;
         }
+        .divider hr { flex: 1; border: none; border-top: 1px solid rgba(200,169,110,.2); }
+        .divider span { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: rgba(200,169,110,.45); }
 
-        textarea {
-            resize: vertical;
-            min-height: 110px;
-            line-height: 1.6;
+        /* ── Step pills ── */
+        .step-pills {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 30px;
+            justify-content: center;
         }
+        .pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            border: 1px solid rgba(200,169,110,.25);
+            border-radius: 100px;
+            background: rgba(200,169,110,.06);
+        }
+        .pill-num {
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: rgba(200,169,110,.15);
+            border: 1px solid rgba(200,169,110,.4);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--gold-dark);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .pill span { font-size: 10px; color: var(--text-light); letter-spacing: .06em; font-weight: 500; }
+        .pill-sep { color: rgba(200,169,110,.3); font-size: 14px; line-height: 1; }
 
-        /* Submit section */
-        .submit-section {
-            margin-top: 32px;
+        /* ── Trust badges ── */
+        .trust-row {
+            display: flex;
+            gap: 0;
+            margin-bottom: 32px;
+            border: 1px solid rgba(200,169,110,.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .trust-item {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 5px;
+            padding: 14px 12px;
+            background: rgba(200,169,110,.05);
+            border-right: 1px solid rgba(200,169,110,.15);
         }
+        .trust-item:last-child { border-right: none; }
+        .trust-item svg { width: 18px; height: 18px; stroke: var(--gold-dark); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .trust-item strong { font-size: 12px; font-weight: 600; color: var(--text-dark); letter-spacing: .02em; }
+        .trust-item span { font-size: 10px; color: var(--text-light); letter-spacing: .04em; text-align: center; }
 
-        .submit-btn {
-            width: 100%;
-            max-width: 340px;
-            background: #2c1a0e;
-            color: #c8a96e;
-            border: 1px solid #c8a96e;
-            padding: 16px 40px;
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            cursor: pointer;
+        /* ── Submit ── */
+        .submit-row { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+        .btn {
+            position: relative; overflow: hidden;
+            padding: 15px 70px;
+            background: var(--brown-mid);
+            border: 1.5px solid var(--gold);
             border-radius: 2px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            font-size: 10.5px; font-weight: 600;
+            letter-spacing: .28em; text-transform: uppercase;
+            color: var(--gold);
+            cursor: pointer;
+            transition: color .3s;
+            display: inline-flex; align-items: center; gap: 10px;
         }
-
-        .submit-btn::before {
+        .btn::before {
             content: '';
-            position: absolute;
-            inset: 0;
-            background: #c8a96e;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.35s ease;
+            position: absolute; inset: 0;
+            background: var(--gold);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform .35s ease;
             z-index: 0;
         }
+        .btn:hover::before { transform: scaleX(1); }
+        .btn:hover { color: var(--brown-mid); }
+        .btn > * { position: relative; z-index: 1; }
+        .btn svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
-        .submit-btn:hover::before {
-            transform: scaleX(1);
-        }
-
-        .submit-btn:hover {
-            color: #2c1a0e;
-        }
-
-        .submit-btn span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .submit-note {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            color: #a08060;
-            letter-spacing: 0.05em;
-        }
-
-        /* Bottom card border */
-        .card-bottom-border {
-            height: 3px;
-            background: linear-gradient(90deg, #8b6914, #c8a96e, #e8c97e, #c8a96e, #8b6914);
-        }
+        .submit-note { font-size: 11px; color: var(--text-light); letter-spacing: .04em; }
 
         /* Footer */
-        .page-footer {
-            text-align: center;
-            margin-top: 20px;
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            color: rgba(200,169,110,0.45);
-            letter-spacing: 0.12em;
-        }
-
-        /* Section spacing */
-        .section-gap {
-            margin-top: 8px;
-        }
+        .foot { text-align: center; margin-top: 18px; font-size: 10.5px; color: rgba(200,169,110,.35); letter-spacing: .14em; }
 
         @media (max-width: 640px) {
-            .card-body { padding: 30px 24px 36px; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-header h1 { font-size: 28px; }
+            .card-head { padding: 26px 22px; flex-direction: column; align-items: flex-start; }
+            .head-badge { display: none; }
+            .card-body { padding: 28px 22px 38px; }
+            .grid { grid-template-columns: 1fr; }
+            .trust-row { flex-wrap: wrap; }
+            .trust-item { min-width: 50%; }
+            .step-pills { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-<!-- Corner ornamental SVGs -->
-<svg class="corner-panel tl" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0 L220 0 L220 10 L10 10 L10 220 L0 220 Z" fill="#c8a96e"/>
-    <path d="M20 20 L160 20 L160 30 L30 30 L30 160 L20 160 Z" fill="#c8a96e" opacity="0.5"/>
-    <path d="M0 0 L80 0 L80 10 M0 0 L0 80 L10 80" stroke="#c8a96e" stroke-width="0.5" opacity="0.8"/>
-    <path d="M40 0 L40 40 L0 40" stroke="#c8a96e" stroke-width="0.5" fill="none" opacity="0.6"/>
-    <path d="M60 0 L60 60 L0 60" stroke="#c8a96e" stroke-width="0.3" fill="none" opacity="0.4"/>
-    <rect x="14" y="14" width="16" height="16" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7"/>
-    <circle cx="22" cy="22" r="4" fill="#c8a96e" opacity="0.6"/>
-    <path d="M50 10 L50 50 L10 50" stroke="#c8a96e" stroke-width="0.4" fill="none" opacity="0.5"/>
-    <path d="M22 0 L22 14 M0 22 L14 22" stroke="#c8a96e" stroke-width="0.6" opacity="0.5"/>
+<!-- Corner ornaments -->
+<svg class="corner tl" viewBox="0 0 200 200" fill="none">
+    <path d="M0 0L200 0L200 8L8 8L8 200L0 200Z" fill="#c8a96e"/>
+    <path d="M18 18L140 18L140 26L26 26L26 140L18 140Z" fill="#c8a96e" opacity=".45"/>
+    <rect x="12" y="12" width="14" height="14" fill="none" stroke="#c8a96e" stroke-width=".8" opacity=".7"/>
+    <circle cx="19" cy="19" r="3.5" fill="#c8a96e" opacity=".6"/>
+    <path d="M19 0L19 12 M0 19L12 19" stroke="#c8a96e" stroke-width=".6" opacity=".5"/>
 </svg>
-<svg class="corner-panel tr" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0 L220 0 L220 220 L210 220 L210 10 L0 10 Z" fill="#c8a96e"/>
-    <path d="M60 20 L200 20 L200 160 L190 160 L190 30 L60 30 Z" fill="#c8a96e" opacity="0.5"/>
-    <path d="M40 0 L40 40 L0 40" stroke="#c8a96e" stroke-width="0.5" fill="none" opacity="0.6"/>
-    <rect x="190" y="14" width="16" height="16" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7"/>
-    <circle cx="198" cy="22" r="4" fill="#c8a96e" opacity="0.6"/>
+<svg class="corner tr" viewBox="0 0 200 200" fill="none">
+    <path d="M0 0L200 0L200 200L192 200L192 8L0 8Z" fill="#c8a96e"/>
+    <path d="M60 18L192 18L192 140L184 140L184 26L60 26Z" fill="#c8a96e" opacity=".45"/>
+    <rect x="174" y="12" width="14" height="14" fill="none" stroke="#c8a96e" stroke-width=".8" opacity=".7"/>
+    <circle cx="181" cy="19" r="3.5" fill="#c8a96e" opacity=".6"/>
 </svg>
-<svg class="corner-panel bl" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0 L10 0 L10 210 L220 210 L220 220 L0 220 Z" fill="#c8a96e"/>
-    <path d="M20 60 L30 60 L30 190 L160 190 L160 200 L20 200 Z" fill="#c8a96e" opacity="0.5"/>
-    <rect x="14" y="190" width="16" height="16" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7"/>
-    <circle cx="22" cy="198" r="4" fill="#c8a96e" opacity="0.6"/>
+<svg class="corner bl" viewBox="0 0 200 200" fill="none">
+    <path d="M0 0L8 0L8 192L200 192L200 200L0 200Z" fill="#c8a96e"/>
+    <path d="M18 60L26 60L26 174L140 174L140 182L18 182Z" fill="#c8a96e" opacity=".45"/>
+    <rect x="12" y="174" width="14" height="14" fill="none" stroke="#c8a96e" stroke-width=".8" opacity=".7"/>
+    <circle cx="19" cy="181" r="3.5" fill="#c8a96e" opacity=".6"/>
 </svg>
-<svg class="corner-panel br" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M210 0 L220 0 L220 220 L0 220 L0 210 L210 210 Z" fill="#c8a96e"/>
-    <path d="M190 60 L200 60 L200 200 L60 200 L60 190 L190 190 Z" fill="#c8a96e" opacity="0.5"/>
-    <rect x="190" y="190" width="16" height="16" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7"/>
-    <circle cx="198" cy="198" r="4" fill="#c8a96e" opacity="0.6"/>
+<svg class="corner br" viewBox="0 0 200 200" fill="none">
+    <path d="M192 0L200 0L200 200L0 200L0 192L192 192Z" fill="#c8a96e"/>
+    <path d="M174 60L182 60L182 182L60 182L60 174L174 174Z" fill="#c8a96e" opacity=".45"/>
+    <rect x="174" y="174" width="14" height="14" fill="none" stroke="#c8a96e" stroke-width=".8" opacity=".7"/>
+    <circle cx="181" cy="181" r="3.5" fill="#c8a96e" opacity=".6"/>
 </svg>
 
-<div class="page-wrapper">
+<div class="page">
 
-    <!-- Brand header -->
-    <div class="brand-header">
-        <div class="brand-logo">
-            <svg class="diamond-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 2L34 18L18 34L2 18Z" fill="none" stroke="#c8a96e" stroke-width="1.2"/>
-                <path d="M18 8L28 18L18 28L8 18Z" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.6"/>
-                <circle cx="18" cy="18" r="3" fill="#c8a96e" opacity="0.8"/>
-                <path d="M18 2L18 8 M18 28L18 34 M2 18L8 18 M28 18L34 18" stroke="#c8a96e" stroke-width="0.8" opacity="0.5"/>
-            </svg>
-            <span class="brand-name">Diamond Exports</span>
-        </div>
+    <!-- Brand -->
+    <div class="brand">
+        <svg viewBox="0 0 34 34" fill="none">
+            <path d="M17 2L32 17L17 32L2 17Z" stroke="#c8a96e" stroke-width="1.2"/>
+            <path d="M17 8L26 17L17 26L8 17Z" stroke="#c8a96e" stroke-width=".7" opacity=".55"/>
+            <circle cx="17" cy="17" r="2.8" fill="#c8a96e" opacity=".8"/>
+            <path d="M17 2v6M17 26v6M2 17h6M26 17h6" stroke="#c8a96e" stroke-width=".8" opacity=".45"/>
+        </svg>
+        <span class="brand-name">Diamond Exports</span>
     </div>
 
-    <!-- Main form card -->
-    <div class="form-card">
-        <div class="card-top-border"></div>
+    <div class="card">
+        <div class="stripe"></div>
+
+        <!-- Header -->
+        <div class="card-head">
+            <div>
+                <div class="head-title">Product <em>Inquiry</em></div>
+                <div class="head-sub">Our team responds within 24–48 business hours</div>
+            </div>
+            <div class="head-badge">
+                <svg viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L26 14L14 26L2 14Z" stroke="#c8a96e" stroke-width="1.2"/>
+                    <path d="M14 8L20 14L14 20L8 14Z" stroke="#c8a96e" stroke-width=".8" opacity=".6"/>
+                    <circle cx="14" cy="14" r="2.5" fill="#c8a96e" opacity=".8"/>
+                </svg>
+                <span>Est. 1995</span>
+            </div>
+        </div>
 
         <div class="card-body">
-            <div class="form-header">
-                <h1>Product <span>Inquiry</span></h1>
-                <p>Fill in the details and our team will be in touch shortly</p>
-            </div>
 
             <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DIm000000LPS5" method="POST">
                 <input type="hidden" name="oid" value="00DIm000000LPS5">
-                <input type="hidden" name="retURL" value="https://google.com">
+                <input type="hidden" name="retURL" value="https://bugbuddy06.github.io/Demo/thankyou">
 
-                <!-- Contact Info -->
-                <div class="form-grid">
-                    <div class="section-label">Contact Information</div>
+                <!-- Section 1: Contact -->
+                <div class="sec">
+                    <div class="sec-dot">
+                        <svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+                    </div>
+                    <span class="sec-title">Contact Information</span>
+                    <div class="sec-rule"></div>
+                </div>
 
-                    <div class="form-group">
+                <div class="grid">
+                    <div class="field">
                         <label for="first_name">First Name</label>
-                        <input id="first_name" maxlength="40" name="first_name" type="text" placeholder="Enter first name">
+                        <div class="inp-wrap">
+                            <div class="inp-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                            <input id="first_name" name="first_name" type="text" maxlength="40" placeholder="First name">
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="last_name">Last Name <span class="required-dot">*</span></label>
-                        <input id="last_name" maxlength="80" name="last_name" type="text" required placeholder="Enter last name">
+                    <div class="field">
+                        <label for="last_name">Last Name <span class="req">*</span></label>
+                        <div class="inp-wrap">
+                            <div class="inp-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                            <input id="last_name" name="last_name" type="text" maxlength="80" required placeholder="Last name">
+                        </div>
                     </div>
-
-                    <div class="form-group">
+                    <div class="field">
                         <label for="email">Email Address</label>
-                        <input id="email" maxlength="80" name="email" type="email" placeholder="your@email.com">
+                        <div class="inp-wrap">
+                            <div class="inp-icon"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M2 5l6 5 6-5"/></svg></div>
+                            <input id="email" name="email" type="email" maxlength="80" placeholder="you@company.com">
+                        </div>
                     </div>
-
-                    <div class="form-group">
+                    <div class="field">
                         <label for="phone">Phone Number</label>
-                        <input id="phone" maxlength="40" name="phone" type="text" placeholder="+1 (000) 000-0000">
+                        <div class="inp-wrap">
+                            <div class="inp-icon"><svg viewBox="0 0 16 16"><path d="M3 2h3l1.5 3.5-1.7 1a9 9 0 004.7 4.7l1-1.7L15 11v3a1 1 0 01-1 1C6.3 15 1 9.7 1 3a1 1 0 011-1z"/></svg></div>
+                            <input id="phone" name="phone" type="text" maxlength="40" placeholder="+1 (000) 000-0000">
+                        </div>
                     </div>
-
-                    <div class="form-group full-width">
-                        <label for="company">Company / Organisation <span class="required-dot">*</span></label>
-                        <input id="company" maxlength="40" name="company" type="text" required placeholder="Your company name">
+                    <div class="field span2">
+                        <label for="company">Company / Organisation <span class="req">*</span></label>
+                        <div class="inp-wrap">
+                            <div class="inp-icon"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="11" rx="1"/><path d="M6 15V9h4v6M5 4V2h6v2"/></svg></div>
+                            <input id="company" name="company" type="text" maxlength="40" required placeholder="Your company name">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Product Preferences -->
-                <div class="form-grid section-gap">
-                    <div class="section-label">Product Preferences</div>
+                <div class="divider"><hr><span>✦</span><hr></div>
 
-                    <div class="form-group full-width">
-                        <label for="00NIm000002RHuS">Interested Product Category <small style="font-weight:300;letter-spacing:0;text-transform:none;color:#a08060;font-size:10px;">&nbsp;(hold Ctrl / ⌘ to select multiple)</small></label>
-                        <select id="00NIm000002RHuS" multiple="multiple" name="00NIm000002RHuS">
+                <!-- Section 2: Product -->
+                <div class="sec" style="margin-top:28px;">
+                    <div class="sec-dot">
+                        <svg viewBox="0 0 16 16"><rect x="1" y="5" width="14" height="10" rx="1"/><path d="M5 5V3a3 3 0 016 0v2"/></svg>
+                    </div>
+                    <span class="sec-title">Product Preferences</span>
+                    <div class="sec-rule"></div>
+                </div>
+
+                <div class="grid">
+                    <div class="field span2 no-icon">
+                        <label for="00NIm000002RHuS">
+                            Interested Product Category
+                            <span style="font-weight:300;letter-spacing:0;text-transform:none;color:#a88050;font-size:10px;margin-left:4px;">(hold Ctrl / ⌘ to select multiple)</span>
+                        </label>
+                        <select id="00NIm000002RHuS" multiple name="00NIm000002RHuS">
                             <option value="Hand Knotted Rugs">Hand Knotted Rugs</option>
                             <option value="Modern Rugs">Modern Rugs</option>
                             <option value="Designer Rugs">Designer Rugs</option>
@@ -491,9 +486,9 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="field no-icon">
                         <label for="00NIm000002RHuc">Preferred Material</label>
-                        <div class="select-wrapper">
+                        <div class="sel-wrap">
                             <select id="00NIm000002RHuc" name="00NIm000002RHuc">
                                 <option value="">— Select material —</option>
                                 <option value="Wool">Wool</option>
@@ -509,42 +504,62 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="field">
                         <label for="00NIm000002RHum">Quantity Required</label>
-                        <input id="00NIm000002RHum" name="00NIm000002RHum" type="number" min="1" placeholder="e.g. 50">
+                        <div class="inp-wrap">
+                            <div class="inp-icon"><svg viewBox="0 0 16 16"><path d="M2 8h12M8 2v12"/></svg></div>
+                            <input id="00NIm000002RHum" name="00NIm000002RHum" type="number" min="1" placeholder="e.g. 50">
+                        </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="field">
                         <label for="00NIm000002RHuw">Preferred Size</label>
-                        <input id="00NIm000002RHuw" maxlength="255" name="00NIm000002RHuw" type="text" placeholder='e.g. 8x10 ft'>
+                        <div class="inp-wrap">
+                            <div class="inp-icon"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M2 6h3M2 10h3M6 2v3M10 2v3"/></svg></div>
+                            <input id="00NIm000002RHuw" name="00NIm000002RHuw" type="text" maxlength="255" placeholder="e.g. 8×10 ft">
+                        </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="field span2">
                         <label for="00NIm000002RHv1">Preferred Colour Theme</label>
-                        <input id="00NIm000002RHv1" maxlength="255" name="00NIm000002RHv1" type="text" placeholder="e.g. Earthy neutrals">
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="00NIm000002RHuh">Requirement Details</label>
-                        <textarea id="00NIm000002RHuh" name="00NIm000002RHuh" rows="5" placeholder="Describe your requirements — design preferences, delivery timelines, special instructions..."></textarea>
+                        <div class="inp-wrap">
+                            <div class="inp-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><path d="M8 3v2M8 11v2M3 8h2M11 8h2"/></svg></div>
+                            <input id="00NIm000002RHv1" name="00NIm000002RHv1" type="text" maxlength="255" placeholder="e.g. Earthy neutrals, Deep burgundy…">
+                        </div>
                     </div>
                 </div>
 
+                <div class="divider" style="margin-top:28px;"><hr><span>✦</span><hr></div>
+
+                <!-- Section 3: Requirements -->
+                <div class="sec" style="margin-top:28px;">
+                    <div class="sec-dot">
+                        <svg viewBox="0 0 16 16"><path d="M3 4h10M3 8h7M3 12h5"/></svg>
+                    </div>
+                    <span class="sec-title">Requirement Details</span>
+                    <div class="sec-rule"></div>
+                </div>
+
+                <div class="field no-icon">
+                    <label for="00NIm000002RHuh">Describe your requirements</label>
+                    <textarea id="00NIm000002RHuh" name="00NIm000002RHuh" rows="5" placeholder="Share design preferences, delivery timelines, custom patterns, certifications needed, or any other specifications…"></textarea>
+                </div>
+
                 <!-- Submit -->
-                <div class="submit-section">
-                    <button class="submit-btn" type="submit">
-                        <span>Submit Inquiry</span>
+                <div class="submit-row">
+                    <button class="btn" type="submit">
+                        <svg viewBox="0 0 16 16"><path d="M14 8H2M9 3l5 5-5 5"/></svg>
+                        Submit Inquiry
                     </button>
-                    <p class="submit-note">Our team typically responds within 24–48 business hours</p>
+                    <p class="submit-note">Trusted by buyers across 40+ countries &nbsp;·&nbsp; Secure &amp; confidential</p>
                 </div>
 
             </form>
         </div>
-
-        <div class="card-bottom-border"></div>
+        <div class="stripe"></div>
     </div>
 
-    <div class="page-footer">© 2025 Diamond Exports &nbsp;·&nbsp; Handcrafted Rugs &amp; Carpets</div>
+    <div class="foot">© 2025 Diamond Exports &nbsp;·&nbsp; Handcrafted Rugs &amp; Carpets since 1995</div>
 </div>
 
 </body>
